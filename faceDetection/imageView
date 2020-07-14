@@ -1,0 +1,22 @@
+import cv2.cv2 as cv2
+import numpy as np
+
+img1 = cv2.imread("Resources/sampleImage.jpg")
+img2 = cv2.imread("Resources/sampleImage2.jpg")
+smallImg1 = cv2.resize(img1, (800, 600))
+smallImg2 = cv2.resize(img2, (800, 600))
+smallImgGS1 = cv2.cvtColor(smallImg1, cv2.COLOR_BGR2GRAY)
+smallImgGS2 = cv2.cvtColor(smallImg2, cv2.COLOR_BGR2GRAY)
+
+
+
+stackedImage1 = cv2.hconcat([smallImg1, smallImgGS1])
+stackedImage2 = cv2.hconcat([smallImg2, smallImgGS2])
+finalStackedImage = cv2.vconcat([stackedImage1, stackedImage2])
+
+cv2.imshow("Stacked", finalStackedImage)
+
+while True:
+    keyInput = cv2.waitKey(0)
+    if keyInput == ord('q'):
+        cv2.destroyAllWindows()
